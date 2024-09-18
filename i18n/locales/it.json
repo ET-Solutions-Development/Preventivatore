@@ -1,0 +1,92 @@
+{
+  "form": {
+    "title": "Preventivo",
+    "description": "Genera Preventivo",
+    "newInvBadge": "Nuova Preventivo",
+    "wizard": {
+      "fromAndTo": "Da & A",
+      "invoiceDetails": "Dettagli Preventivo",
+      "lineItems": "Voci",
+      "paymentInfo": "Informazioni di Pagamento",
+      "summary": "Riepilogo",
+      "next": "Avanti",
+      "back": "Indietro"
+    },
+    "steps": {
+      "fromAndTo": {
+        "billFrom": "Preventivo Da",
+        "billTo": "Preventivo A",
+        "name": "Nome",
+        "address": "Indirizzo",
+        "zipCode": "CAP",
+        "city": "Città",
+        "country": "Paese",
+        "email": "Email",
+        "phone": "Telefono",
+        "addCustomInput": "Aggiungi Input Personalizzato",
+        "sender": "Mittente",
+        "receiver": "Destinatario"
+      },
+      "invoiceDetails": {
+        "heading": "Dettagli Preventivo",
+        "invoiceLogo": {
+          "label": "Logo Preventivo",
+          "placeholder": "Clicca per caricare l'immagine"
+        },
+        "invoiceNumber": "Numero Preventivo",
+        "issuedDate": "Data di Emissione",
+        "dueDate": "Data di Scadenza",
+        "currency": "Valuta"
+      },
+      "lineItems": {
+        "heading": "Articoli",
+        "item": "Articolo",
+        "name": "Nome",
+        "quantity": "Quantità",
+        "rate": "Tariffa",
+        "total": "Totale",
+        "description": "Descrizione",
+        "addNewItem": "Aggiungi un nuovo articolo",
+        "removeItem": "Rimuovi articolo"
+      },
+      "paymentInfo": {
+        "heading": "Informazioni di Pagamento",
+        "bankName": "Nome della Banca",
+        "accountName": "Nome del Conto",
+        "accountNumber": "Numero del Conto"
+      },
+      "summary": {
+        "heading": "Riepilogo",
+        "signature": {
+          "heading": "Firma",
+          "placeholder": "Clicca per aggiungere firma",
+          "draw": "Disegna",
+          "type": "Digita",
+          "upload": "Carica"
+        },
+        "additionalNotes": "Note Aggiuntive",
+        "paymentTerms": "Termini di Pagamento",
+        "discount": "Sconto",
+        "tax": "Tassa",
+        "shipping": "Spedizione",
+        "subTotal": "Subtotale",
+        "totalAmount": "Importo Totale",
+        "includeTotalInWords": "Includere il Totale in Parole?",
+        "yes": "Sì",
+        "no": "No"
+      }
+    }
+  },
+  "actions": {
+    "title": "Azioni",
+    "description": "Operazioni e anteprima",
+    "loadInvoice": "Carica Preventivo",
+    "exportInvoice": "Esporta Preventivo",
+    "newInvoice": "Nuova Preventivo",
+    "generatePdf": "Genera PDF",
+    "pdfView": "Visualizza PDF"
+  },
+  "footer": {
+    "developedBy": "Sviluppato da"
+  }
+}
