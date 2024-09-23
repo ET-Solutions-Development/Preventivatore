@@ -21,7 +21,7 @@ const BaseNavbar = () => {
     return (
         <header className="lg:container z-[99]">
             <nav>
-                <Card className="flex flex-wrap justify-between items-center px-5 gap-5">
+                <Card className="flex flex-wrap justify-between items-center px-5 gap-5 min-h-[100px]">
                     <Link href={"/"}>
                         <Image
                             src={Logo}
@@ -32,7 +32,7 @@ const BaseNavbar = () => {
                         />
                     </Link>
                     {/* ? DEV Only */}
-                    {devEnv && <DevDebug />}
+                    {/* {devEnv && <DevDebug />} */}
                     <LanguageSelector />
                     <ThemeSwitcher />
                 </Card>

@@ -2,7 +2,7 @@
   "form": {
     "title": "Preventivo",
     "description": "Genera Preventivo",
-    "newInvBadge": "Nuova Preventivo",
+    "newInvBadge": "Nuovo Preventivo",
     "wizard": {
       "fromAndTo": "Da & A",
       "invoiceDetails": "Dettagli Preventivo",
@@ -82,7 +82,7 @@
     "description": "Operazioni e anteprima",
     "loadInvoice": "Carica Preventivo",
     "exportInvoice": "Esporta Preventivo",
-    "newInvoice": "Nuova Preventivo",
+    "newInvoice": "Nuovo Preventivo",
     "generatePdf": "Genera PDF",
     "pdfView": "Visualizza PDF"
   },

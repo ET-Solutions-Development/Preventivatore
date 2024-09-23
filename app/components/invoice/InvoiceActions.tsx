@@ -27,7 +27,7 @@ const InvoiceActions = () => {
     const { invoicePdfLoading } = useInvoiceContext();
 
     return (
-        <div className={`xl:w-[45%]`}>
+        <div className={`xl:w-[44%]`}>
             <Card className="h-auto sticky top-0 px-2">
                 <CardHeader>
                     <CardTitle>Azioni</CardTitle>

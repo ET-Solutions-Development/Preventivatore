@@ -54,45 +54,47 @@ const InvoiceTemplate = (data: InvoiceType) => {
                     <h3 className="text-lg font-semibold text-gray-800">
                         Destinatario:
                     </h3>
-                    <h3 className="text-lg font-semibold text-gray-800">
+                    <h3 className="text-md font-semibold text-gray-800">
                         {receiver.name}
                     </h3>
+                    
                     <address className="mt-2 not-italic text-gray-500">
-                        {receiver.address}, {receiver.zipCode}
+                        {receiver.address ? receiver.address + ", ": null} 
+                        {receiver.zipCode ? receiver.zipCode + ", " : null}
                         <br />
-                        {receiver.city}, {receiver.country}
+                        {receiver.city ? receiver.city : null}  
                         <br />
                     </address>
                 </div>
                 <div className="sm:text-right space-y-2">
-                    <div className="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
-                        <dl className="grid sm:grid-cols-6 gap-x-3">
-                            <dt className="col-span-3 font-semibold text-gray-800">
-                                Data Preventivo:
+                    <div className="flex flex-col  gp-2 sm:grid-cols-1 gap-3 sm:gap-2">
+                        <dl className="flex gap-1 flex-row justify-end">
+                            <dt className=" font-semibold text-gray-800">
+                                Data:
                             </dt>
-                            <dd className="col-span-3 text-gray-500">
-                                {new Date(
-                                    details.invoiceDate
-                                ).toLocaleDateString("en-US", DATE_OPTIONS)}
+                            <dd className=" text-gray-500">
+                                {new Date(details.invoiceDate).toLocaleDateString("it-IT", DATE_OPTIONS)}
                             </dd>
                         </dl>
-                        <dl className="grid sm:grid-cols-6 gap-x-3">
-                            <dt className="col-span-3 font-semibold text-gray-800">
+                        {details.dueDate && (
+                        <dl className="flex gap-1 flex-row justify-end">
+                            <dt className=" font-semibold text-gray-800">
                                 Data Scadenza:
                             </dt>
-                            <dd className="col-span-3 text-gray-500">
+                            <dd className=" text-gray-500">
                                 {new Date(details.dueDate).toLocaleDateString(
-                                    "en-US",
+                                    "it-IT",
                                     DATE_OPTIONS
                                 )}
                             </dd>
                         </dl>
+                        )}
                     </div>
                 </div>
             </div>
 
             <div className="mt-3">
-                <div className="border border-gray-200 p-1 rounded-lg space-y-1">
+                <div className="border border-gray-200 p-4 rounded-lg space-y-1">
                     <div className="hidden sm:grid sm:grid-cols-5">
                         <div className="sm:col-span-2 text-xs font-medium text-gray-500 uppercase">
                             Descrizione
@@ -224,9 +226,9 @@ const InvoiceTemplate = (data: InvoiceType) => {
                     </div>
                 </div>
             </div>
-
             <div>
                 <div className="my-4">
+                  {details.additionalNotes ? (
                     <div className="my-2">
                         <p className="font-semibold text-blue-600">
                             Note aggiuntive:
@@ -235,6 +237,9 @@ const InvoiceTemplate = (data: InvoiceType) => {
                             {details.additionalNotes}
                         </p>
                     </div>
+                  ) : null}
+
+                  {details.paymentTerms ? (
                     <div className="my-2">
                         <p className="font-semibold text-blue-600">
                             Termini di pagamento:
@@ -243,7 +248,8 @@ const InvoiceTemplate = (data: InvoiceType) => {
                             {details.paymentTerms}
                         </p>
                     </div>
-                    <div className="my-2">
+                  ) : null}
+                    {/* <div className="my-2">
                         <span className="font-semibold text-md text-gray-800">
                             Informazioni di pagamento:
                             <p className="text-sm">
@@ -258,7 +264,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
                                 {details.paymentInformation?.accountNumber}
                             </p>
                         </span>
-                    </div>
+                    </div> */}
                 </div>
                 <p className="text-gray-500 text-sm">
                   Per qualsiasi informazione, contattare:

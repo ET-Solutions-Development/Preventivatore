@@ -38,9 +38,9 @@ const LanguageSelector = () => {
                 className="w-[10rem] relative"
                 aria-label="Languages"
             >
-                <Badge className="position: absolute -top-4 -left-2 font-normal">
+                {/* <Badge className="position: absolute -top-4 -left-2 font-normal">
                     BETA
-                </Badge>
+                </Badge> */}
                 <SelectValue placeholder="Select a language" />
             </SelectTrigger>
             <SelectContent

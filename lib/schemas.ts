@@ -11,69 +11,49 @@ import { DATE_OPTIONS } from "@/lib/variables";
 const fieldValidators = {
     name: z
         .string()
-        .min(2, { message: "Must be at least 2 characters" })
-        .max(50, { message: "Must be at most 50 characters" }),
+        .min(2, { message: "Deve contenere almeno 2 caratteri" })
+        .max(50, { message: "Deve contenere al massimo 50 caratteri" }),
     address: z
-        .string()
-        .min(2, { message: "Must be at least 2 characters" })
-        .max(70, { message: "Must be between 2 and 70 characters" }),
+        .string(),
     zipCode: z
-        .string()
-        .min(2, { message: "Must be between 2 and 20 characters" })
-        .max(20, { message: "Must be between 2 and 20 characters" }),
+        .string(),
     city: z
-        .string()
-        .min(1, { message: "Must be between 1 and 50 characters" })
-        .max(50, { message: "Must be between 1 and 50 characters" }),
+        .string(),
     country: z
-        .string()
-        .min(1, { message: "Must be between 1 and 70 characters" })
-        .max(70, { message: "Must be between 1 and 70 characters" }),
+        .string(),
     email: z
-        .string()
-        .email({ message: "Email must be a valid email" })
-        .min(5, { message: "Must be between 5 and 30 characters" })
-        .max(30, { message: "Must be between 5 and 30 characters" }),
+        .preprocess(val => val === "" ? undefined : val, z.string().email().optional()),
     phone: z
-        .string()
-        .min(1, { message: "Must be between 1 and 50 characters" })
-        .max(50, {
-            message: "Must be between 1 and 50 characters",
-        }),
+        .string(),
 
     // Dates
     date: z
-        .date()
+        .preprocess((arg) => (arg ? new Date(arg) : undefined), z.date().optional())
         .transform((date) =>
-            new Date(date).toLocaleDateString("en-US", DATE_OPTIONS)
+          date ? date.toLocaleDateString("it-IT", DATE_OPTIONS) : undefined
         ),
-
     // Items
     quantity: z.coerce
         .number()
-        .min(1, { message: "Must be a number greater than 0" }),
+        .min(1, { message: "Deve essere un numero maggiore di 0" }),
     unitPrice: z.coerce
         .number()
-        .min(1, { message: "Must be a number greater than 0" }),
+        .min(1, { message: "Deve essere un numero maggiore di 0" }),
 
     // Strings
-    string: z.string(),
-    stringMin1: z.string().min(1, { message: "Must be at least 1 character" }),
+    string: z.string().optional(),
+    stringRequired: z.string(),
     stringToNumber: z.coerce.number(),
-
     // Charges
     stringToNumberWithMax: z.coerce.number().max(1000000),
-
-    stringOptional: z.string().optional(),
-
     nonNegativeNumber: z.coerce.number().nonnegative({
-        message: "Must be a positive number",
+        message: "Deve essere un numero positivo",
     }),
     // ! This is unused
     numWithCommas: z.coerce
         .number()
         .nonnegative({
-            message: "Must be a positive number",
+            message: "Deve essere un numero positivo",
         })
         .transform((value) => {
             return formatNumberWithCommas(value);
@@ -108,17 +88,17 @@ const InvoiceReceiverSchema = z.object({
 });
 
 const ItemSchema = z.object({
-    name: fieldValidators.stringMin1,
-    description: fieldValidators.stringOptional,
+    name: fieldValidators.string,
+    description: fieldValidators.string,
     quantity: fieldValidators.quantity,
     unitPrice: fieldValidators.unitPrice,
     total: fieldValidators.stringToNumber,
 });
 
 const PaymentInformationSchema = z.object({
-    bankName: fieldValidators.stringMin1,
-    accountName: fieldValidators.stringMin1,
-    accountNumber: fieldValidators.stringMin1,
+    bankName: fieldValidators.string,
+    accountName: fieldValidators.string,
+    accountNumber: fieldValidators.string,
 });
 
 const DiscountDetailsSchema = z.object({
@@ -143,11 +123,11 @@ const SignatureSchema = z.object({
 });
 
 const InvoiceDetailsSchema = z.object({
-    invoiceLogo: fieldValidators.stringOptional,
-    invoiceNumber: fieldValidators.stringMin1,
+    invoiceLogo: fieldValidators.string,
+    invoiceNumber: fieldValidators.string,
     invoiceDate: fieldValidators.date,
     dueDate: fieldValidators.date,
-    purchaseOrderNumber: fieldValidators.stringOptional,
+    purchaseOrderNumber: fieldValidators.string,
     currency: fieldValidators.string,
     language: fieldValidators.string,
     items: z.array(ItemSchema),
@@ -158,10 +138,10 @@ const InvoiceDetailsSchema = z.object({
     subTotal: fieldValidators.nonNegativeNumber,
     totalAmount: fieldValidators.nonNegativeNumber,
     totalAmountInWords: fieldValidators.string,
-    additionalNotes: fieldValidators.stringOptional,
-    paymentTerms: fieldValidators.stringMin1,
+    additionalNotes: fieldValidators.string,
+    paymentTerms: fieldValidators.string,
     signature: SignatureSchema.optional(),
-    updatedAt: fieldValidators.stringOptional,
+    updatedAt: fieldValidators.string,
     pdfTemplate: z.number(),
 });
 
