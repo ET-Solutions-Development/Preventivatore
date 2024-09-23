@@ -73,7 +73,10 @@ const InvoiceTemplate = (data: InvoiceType) => {
                                 Data:
                             </dt>
                             <dd className=" text-gray-500">
-                                {new Date(details.invoiceDate).toLocaleDateString("it-IT", DATE_OPTIONS)}
+                                {
+                                details.invoiceDate ?
+                                new Date(details.invoiceDate).toLocaleDateString("it-IT", DATE_OPTIONS) : null
+                                }
                             </dd>
                         </dl>
                         {details.dueDate && (
