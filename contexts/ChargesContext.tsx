@@ -257,7 +257,7 @@ export const ChargesContextProvider = ({ children }: ChargesContextProps) => {
                 setShippingType,
                 totalInWordsSwitch,
                 setTotalInWordsSwitch,
-                currency,
+                currency : currency || "EUR",
                 subTotal,
                 totalAmount,
                 calculateTotal,
