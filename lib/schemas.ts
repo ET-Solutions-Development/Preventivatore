@@ -28,10 +28,17 @@ const fieldValidators = {
 
     // Dates
     date: z
-        .preprocess((arg) => (arg ? new Date(arg) : undefined), z.date().optional())
-        .transform((date) =>
-          date ? date.toLocaleDateString("it-IT", DATE_OPTIONS) : undefined
-        ),
+      .preprocess((arg) => {
+        // Ensure arg is of type string or Date, or it will be undefined.
+        if (typeof arg === "string" || arg instanceof Date) {
+          return new Date(arg);
+        }
+        return undefined; // Handle undefined or invalid input
+      }, z.date().optional())
+      .transform((date) =>
+        date ? date.toLocaleDateString("it-IT", DATE_OPTIONS) : undefined
+      ),
+
     // Items
     quantity: z.coerce
         .number()
